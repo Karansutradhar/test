@@ -1,0 +1,6 @@
+<launch>
+  <test pkg="collection_robot"
+  		type="collection_robot_test"
+  		test-name="collection_robot_test"
+  />
+</launch>

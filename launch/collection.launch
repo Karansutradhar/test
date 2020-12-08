@@ -1,0 +1,22 @@
+<launch>
+    <!-- Set to true to record-->
+    <arg name="record" default="false"/>
+    <!-- Turtlebot world launch file-->
+    <include file="$(find collection_robot)/launch/basketBallCourt.launch"/>
+
+    <!-- Launch mover node-->
+    <node 
+        pkg="collection_robot"
+        type="collection"
+        name="collection"
+        output="screen"
+    />
+    <!-- Launch rosbag node -->
+    <node 
+        pkg="rosbag"
+        name="record"
+        type="record"
+        args="-a -O $(find collection_robot)/results/Collection-Robot.bag -x /camera/(.*)" 
+        if="$(arg record)"
+    />
+</launch>
