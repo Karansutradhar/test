@@ -1,6 +1,6 @@
 # Indoor Sports Court Ball Collection Robot
-[![Build Status](https://travis-ci.org/Karansutradhar/test.svg?branch=master)](https://travis-ci.org/Karansutradhar/test)
-[![Coverage Status](https://coveralls.io/repos/github/Karansutradhar/test/badge.svg?branch=master)](https://coveralls.io/github/Karansutradhar/test?branch=master)
+[![Build Status](https://travis-ci.org/dahhmani/collection_robot.svg?branch=master)](https://travis-ci.org/dahhmani/collection_robot)
+[![Coverage Status](https://coveralls.io/repos/github/dahhmani/collection_robot/badge.svg?branch=master)](https://coveralls.io/github/dahhmani/collection_robot?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview and Description
