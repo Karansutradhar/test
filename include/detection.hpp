@@ -38,117 +38,99 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <ros/ros.h>
-#include <cv_bridge/cv_bridge.h>
-#include <opencv2/opencv.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include "ros/ros.h"
+#include "cv_bridge/cv_bridge.h"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 
 /**
  * @brief Detection of the colored objects.
  */
 class Detection {
-private:
-  //color code RGB
+ private:
+  // color code RGB
   ros::NodeHandle nh;
-  //subscriber to obhect to the data of laser sensor
+  // subscriber to obhect to the data of laser sensor
   ros::Subscriber colorObjSub;
-  //cros images stores as cv images
+  // cros images stores as cv images
   cv::Mat imgHsv;
   cv::Mat imgMask;
-  //identifying the colored objects limiting points
+  // identifying the colored objects limiting points
   cv::Rect colorObjlimits;
-  //setting upper and lower limit of color
+  // setting upper and lower limit of color
   const cv::Scalar lowerLimit = {};
   const cv::Scalar upperLimit = {};
-  //defining image size
+  // defining image size
   cv::Size imgSize;
-  //image contours
+  // image contours
   std::vector<std::vector<cv::Point> > imgContours;
-  //to check color is detected
+  // to check color is detected
   bool isObjDected;
 
-public:
-  //a attribute stoes the images
+ public:
+  // an attribute stoes the images
   cv:: Mat imgStorage;
-  
   /**
    * @brief Base Constructor for the Detection class.
    * @param None.
    * @return None.
    */
-
   Detection();
-
   /**
    * @brief Conversion of ROS images to CV images
    * @param image data from camera
    * @return None.
    */
-
   void imgConversion(const sensor_msgs::Image::ConstPtr& imgData);
-
   /**
    * @brief Function detect colored objects
    * @param gaussian filterd image
    * @return true if color is detected, otherwise false
    */
-
   bool detectObjs(cv::Mat objects);
-
   /**
    * @brief Function to modify gaussian filter on the image
    * @param changed open cv image
    * @return blurred image
    */
-
   cv::Mat filterImage(cv::Mat imgFiltered);
-  
   /**
    * @brief set limiting condition for objects
    * @param Circular limits to the colored objects
    * @return None
    */
-
-  void setObjLimits(cv::Rect limits){
+  void setObjLimits(cv::Rect limits) {
     colorObjlimits = limits;
   }
-
   /**
    * @brief get limiting condition for objects
    * @param None
    * @return Circular limits consist of the colored object
    */
-
   cv::Rect getObjLimits() const {
     return colorObjlimits;
   }
-
   /**
    * @brief setting object detected
    * @param Status of object detected
    * @return None
    */
-
-  void setIsObjDetected(bool objs){
+  void setIsObjDetected(bool objs) {
     isObjDected = objs;
   }
-
   /**
    * @brief getting object detected
    * @param None
    * @return True if object is detected, otherwise false
    */
-
   bool getIsObjDetected() const {
     return isObjDected;
   }
-
  /**
    * @brief Base Destructor for the Detection class.
    * @param None.
    * @return None.
    */
-
   ~Detection();
 };

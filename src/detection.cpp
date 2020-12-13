@@ -33,27 +33,30 @@
  */
 
 
-#pragma once
-
 #include <iostream>
 #include <vector>
 #include <string>
-#include <ros/ros.h>
-#include <cv_bridge/cv_bridge.h>
-#include <opencv2/opencv.hpp>
-#include <opencv2/highgui/highgui.hpp>
+#include "ros/ros.h"
+#include "cv_bridge/cv_bridge.h"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
 #include "detection.hpp"
 
-Detection::Detection(){}
-
-void Detection::imgConversion(const sensor_msgs::Image::ConstPtr& imgData){}
-
-bool Detection::detectObjs(cv::Mat objects){
-  return true;
+Detection::Detection() {
+    isObjDected =  true;
 }
 
-cv::Mat Detection::filterImage(cv::Mat imgFiltered){
+void Detection::imgConversion(const sensor_msgs::Image::ConstPtr& imgData) {
+    std::cout << "testing" << std::endl;
 }
 
-Detection::~Detection(){}
+bool Detection::detectObjs(cv::Mat objects) {
+    return true;
+}
+
+cv::Mat Detection::filterImage(cv::Mat imgFiltered) {
+    std::cout << "testing" << std::endl;
+}
+
+Detection::~Detection() {}
 

@@ -36,23 +36,23 @@
 #pragma once
 
 #include <iostream>
-#include <ros/ros.h>
-#include <sensor_msgs/LaserScan.h>
+#include "ros/ros.h"
+#include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
 #include "detection.hpp"
 
 class Navigation {
  private:
-  //Communication with the ROS system
+  // Communication with the ROS system
   ros::NodeHandle nh;
 
-  //Subscribe to laser scan topic
+  // Subscribe to laser scan topic
   ros::Subscriber sensorLaser;
 
-  //Inilalize variable to store if object is detected
+  // Inilalize variable to store if object is detected
   ros::Publisher velocity;
 
-   //msg variable that handles robot speeds
+  // msg variable that handles robot speeds
   geometry_msgs::Twist velocitymsg;
 
   // Defining minimun distance from the wall to avoid collision
@@ -69,105 +69,81 @@ class Navigation {
 
   // Defining publishing rate
   const int pubRate = 200;
- 
- public:
-   //obstacle variable that defines presence of obstacles
-    bool obstacles;
 
+ public:
+  // obstacle variable that defines presence of obstacles
+  bool obstacles;
   /**
    * @brief Base Constructor for the Navigation class.
    * @param None.
    * @return None.
    */
-
   Navigation();
-
   /**
    * @brief Base Constructor for the Navigation class.
    * @param Linear velocity
    * @param Angular velocity
    * @return None.
    */
-
   Navigation(float velLin, float velAng);
-
   /**
    * @brief   Make the Robot move ahead
    * @param   linear velocity in x direction
    * @return  linear velocity of the robot
    */
-
   float moveAhead(float velLin);
-
   /**
    * @brief   change the direction
    * @param   angular velocity in z direction
    * @return  angular velocity for the robot
    */
-
   float turnDirection(float velAng);
-
   /**
    * @brief   Controling the motion of the robot
    * @param   none
    * @return  none
    */
-
   void robotMovement();
-
   /**
    * @brief   reset velocity of the robot
    * @param   none
    * @return  returns true, otherwise false
    */
-
   bool resetRobotVelocity();
-
   /**
   * @brief  checks if there is any modification in velocity
   * @param  none
   * @return true if changed, otherwise false
   */
-
   bool checkChangeInVelocity();
-  
   /**
    * @brief sensor callback to subscribe the laser sensor callback topic
    * @param sensor_msgs::ScanLaser
    * @return None.
    */
-
   void laserSensorCallback(const sensor_msgs::LaserScan::ConstPtr& sensorData);
-
   /**
    * @brief Function to explore the world environment and set speed for the robot without collision
    * @param None.
    * @return geometry_msgs , to move robot without collision
    */
-
   geometry_msgs::Twist explore();
-
   /**
   * @brief  function to avoid walls
   * @param  Threshold distance from the walls
   * @return none
   */
-
   void avoidObstacle(float thresholdDist);
-
   /**
    * @brief   Checks the walls are present within threshold distance
    * @param   none
    * @return  TRue if found, otherwise false
    */
-
   bool checkWalls();
-  
   /**
    * @brief Destructor for the Navigation class.
    * @param None.
    * @return None.
    */
-
   ~Navigation();
 };

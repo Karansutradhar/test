@@ -36,8 +36,8 @@
 #include <gtest/gtest.h>
 #include <ros/ros.h>
 #include "opencv2/opencv.hpp"
-#include <navigation.hpp>
-#include <detection.hpp>
+#include "navigation.hpp"
+#include "detection.hpp"
 
 /**
  * @brief This test checks if the filterImage function works as expected
@@ -50,11 +50,11 @@ TEST(Test1, filterImageFunctionTest) {
     // Checking if file is empty or not
     if (!detectionObj.imgStorage.empty()) {
         cv::Mat filerImg = detectionObj.filterImage(
-    		detectionObj.imgStorage);
-    	if(filerImg.size() == detectionObj.imgStorage.size()) {
-    	// smoothing will help the images not to have same size
-    		filterCheck = false;
-    	}
+            detectionObj.imgStorage);
+        if (filerImg.size() == detectionObj.imgStorage.size()) {
+        // smoothing will help the images not to have same size
+            filterCheck = false;
+        }
     }
     EXPECT_TRUE(filterCheck);
 }
@@ -69,10 +69,10 @@ TEST(Test1, detectObjsFunctionTest) {
     Detection detectionObj;
     bool objDetected;
     if (!detectionObj.imgStorage.empty()) {
-    	objDetected = detectionObj.detectObjs(
-    		detectionObj.filterImage(detectionObj.imgStorage));
+        objDetected = detectionObj.detectObjs(
+            detectionObj.filterImage(detectionObj.imgStorage));
     }
-    //condition where object not detected
+    // condition where object not detected
     EXPECT_FALSE(objDetected);
 }
 

@@ -33,56 +33,67 @@
  */
 
 
-#pragma once
-
 #include <iostream>
-#include <ros/ros.h>
-#include <sensor_msgs/LaserScan.h>
+#include "ros/ros.h"
+#include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
 #include "navigation.hpp"
 #include "detection.hpp"
 
-
-Navigation::Navigation(){
-	xVelLin = 3.0;
-	zVelAng = 0.75;
+Navigation::Navigation() {
+    thresholdDist = 0.0;
+    prevVelLin = 0.0;
+    prevVelAng = 0.0;
+    obstacles = true;
+    xVelLin = 0.0;
+    zVelAng = 0.0;
 }
 
-Navigation::Navigation(float velLin, float velAng){
-	xVelLin = velLin;
-	zVelAng = velAng;
+Navigation::Navigation(float velLin, float velAng) {
+    xVelLin = velLin;
+    zVelAng = velAng;
+    thresholdDist = 0.0;
+    prevVelLin = 0.0;
+    prevVelAng = 0.0;
+    obstacles = true;
 }
 
-float Navigation::moveAhead(float velLin){
-	return 3.0;
+float Navigation::moveAhead(float velLin) {
+    return 3.0;
 }
 
-float Navigation::turnDirection(float velAng){
-	return 0.75;
+float Navigation::turnDirection(float velAng) {
+    return 0.75;
 }
 
-void Navigation::robotMovement(){
+void Navigation::robotMovement() {
+    std::cout << "testing" << std::endl;
 }
 
-bool Navigation::resetRobotVelocity(){
-	return true;
+bool Navigation::resetRobotVelocity() {
+    return true;
 }
 
-bool Navigation::checkChangeInVelocity(){
-	return true;
+bool Navigation::checkChangeInVelocity() {
+    return true;
 }
 
-void Navigation::laserSensorCallback(const sensor_msgs::LaserScan::ConstPtr& sensorData){}
-
-geometry_msgs::Twist Navigation::explore(){
+void Navigation::laserSensorCallback(const
+    sensor_msgs::LaserScan::ConstPtr& sensorData) {
+    std::cout << "testing" << std::endl;
 }
 
-void Navigation::avoidObstacle(float thresholdDist){
+geometry_msgs::Twist Navigation::explore() {
+    std::cout << "testing" << std::endl;
 }
 
-bool Navigation::checkWalls(){
-	return false;
+void Navigation::avoidObstacle(float thresholdDist) {
+    std::cout << "testing" << std::endl;
 }
-  
-Navigation::~Navigation(){}
+
+bool Navigation::checkWalls() {
+    return false;
+}
+
+Navigation::~Navigation() {}
 
