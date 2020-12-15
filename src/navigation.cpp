@@ -51,7 +51,7 @@ Navigation::Navigation() {
   prevVelAng = zVelAng;
   /// Publishing on the mover topic for the velocities of the robot
   velocity = nh.advertise<geometry_msgs::Twist>
-       ("/cmd_vel_mux/input/navi", 1000);
+       ("/cmd_vel", 10);
   ROS_INFO_STREAM("The process is complete for navigation");
 }
 
@@ -65,7 +65,7 @@ Navigation::Navigation(float velLin, float velAng) {
   prevVelAng = zVelAng;
   /// Publishing on the mover topic for the velocities of the robot
   velocity = nh.advertise<geometry_msgs::Twist>
-        ("/cmd_vel_mux/input/navi", 1000);
+        ("/cmd_vel", 10);
   ROS_INFO_STREAM("The process is complete for navigation");
 
 }
