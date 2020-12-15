@@ -26,6 +26,8 @@ The following is the planned approach.
 ### Potential Risk & Mitigation
 Gmapping doesn’t work on large open spaces, so we intend to make the environment small.
 
+### Known Issues and Bugs
+
 We intend on creating a robust set of test cases with:
 
     cmake
@@ -35,7 +37,7 @@ We intend on creating a robust set of test cases with:
 
 ## Authors
 
-[Karan Sutradhar](https://github.com/Karansutradhar)
+[Karan Sutradhar](https://github.com/Karansutradhar) - Pursuing 
 
 [Ajinkya Parwekar](https://github.com/ajinkyap991)
 
@@ -58,13 +60,17 @@ Standard MIT License Clause
 
 ## Project Dependencies
 
-- Creation and implemenation of this ROS package was on ROS Melodic Ubuntu 18.04 (Linux) and Gazebo 9.0.0 version.
-- Catkin is used for building this package. CMake (build system)
-- OpenCV >= 4.4
-- Follow the C++ 11 standard style of coding.
-- ROS Melodic
+- Creation and implemenation of this ROS package was on ROS Melodic Ubuntu 18.04 (Linux)
+- Simulated Environment- Gazebo 9.0.0 version.
+- Build System - CMake
+- Open Source Libraries - OpenCV >= 4.4 (Apache License) 
+- Programming Language - C++ 11/14 
+- ROS Version - Melodic
+- Automated Unit Testing - Travic CI
+- Code Coverage - Coveralls
 - A standard turtlebot3 pkg needs to be installed in order to run this project.
-- Gazebo
+- Version Control - Git & Github
+
 
 ### Install ROS Melodic
 
@@ -81,7 +87,7 @@ The instructions to install the standard turtlebot3 ROS package can be found [he
 
 [HSV Color Detection](https://docs.opencv.org/master/df/d9d/tutorial_py_colorspaces.html)
 
-## Installing OpenCV
+## Installing OpenCV and Dependencies
 To install opencv follow the instructions
 ```
 sudo apt-get update;
