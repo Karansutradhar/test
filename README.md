@@ -36,7 +36,9 @@ We intend on creating a robust set of test cases with:
 ## Authors
 
 [Karan Sutradhar](https://github.com/Karansutradhar)
+
 [Ajinkya Parwekar](https://github.com/ajinkyap991)
+
 [Mahmoud Dahmani](https://github.com/dahhmani)
 
 ## License
