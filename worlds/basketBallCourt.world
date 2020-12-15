@@ -1,4 +1,3 @@
-<?xml version='1.0'?>
 <sdf version='1.6'>
   <model name='BasketBallCourt.world'>
     <link name='link_1_clone_clone'>
