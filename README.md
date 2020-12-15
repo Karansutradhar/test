@@ -37,11 +37,11 @@ We intend on creating a robust set of test cases with:
 
 ## Authors
 
-[Karan Sutradhar](https://github.com/Karansutradhar) - Pursuing 
+[Karan Sutradhar](https://github.com/Karansutradhar) - Pursuing Masters' in Robotics
 
-[Ajinkya Parwekar](https://github.com/ajinkyap991)
+[Ajinkya Parwekar](https://github.com/ajinkyap991) - Pursuing Masters' in Robotics
 
-[Mahmoud Dahmani](https://github.com/dahhmani)
+[Mahmoud Dahmani](https://github.com/dahhmani) - Pursuing Masters' in Robotics
 
 ## License
 
