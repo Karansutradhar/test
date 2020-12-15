@@ -4,6 +4,9 @@ project(collection_robot)
 ## Compile as C++11, supported in ROS Melodic and newer
 add_compile_options(-std=c++11)
 
+## Find catkin and any catkin packages
+find_package(OpenCV REQUIRED)
+
 find_package(catkin REQUIRED COMPONENTS
   catkin REQUIRED COMPONENTS
   roscpp
@@ -26,10 +29,14 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
 )
 
-add_executable(collector src/main.cpp src/detection.cpp src/navigation.cpp)
+## Add executables
+add_executable(collection src/avoidance.cpp src/mover.cpp src/navigation.cpp)
+
+add_executable(scanner src/detection.cpp src/scanner.cpp)
 
 ## Add target link libraries
-target_link_libraries(collector ${catkin_LIBRARIES} ${OpenCV_LIBS})
+target_link_libraries(collection ${catkin_LIBRARIES} ${OpenCV_LIBS})
+target_link_libraries(scanner ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 ## Enable catkin test and add files for the same
 if(CATKIN_ENABLE_TESTING)
@@ -44,6 +51,7 @@ if(CATKIN_ENABLE_TESTING)
    test/test.cpp
    src/detection.cpp
    src/navigation.cpp
+   src/avoidance
    )
 
   target_link_libraries(
@@ -53,7 +61,8 @@ if(CATKIN_ENABLE_TESTING)
 
   add_dependencies(
   	collection_robot_test
-    collector
+    collection
+    scanner
     ${catkin_EXPORTED_TARGETS})
 endif()
 

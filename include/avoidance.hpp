@@ -1,9 +1,9 @@
 /**
- * @file navigation.hpp
+ * @file avoidance.hpp
  * @author Ajinkya Parwekar
  * @author Karan Sutradhar
  * @author Mahmoud Dahmani
- * @brief The navigation.hpp file for Indoor Sports Court Ball Collection Robot project.
+ * @brief The avoidance.hpp file for Indoor Sports Court Ball Collection Robot project.
  * It contains Collection class methods definitions.
  * @Copyright "Copyright 2020" <Ajinkya Parwekar>
  * @Copyright "Copyright 2020" <Karan Sutradhar>
@@ -37,81 +37,68 @@
 
 #include <iostream>
 #include "ros/ros.h"
-#include "geometry_msgs/Twist.h"
-#include "detection.hpp"
-#include "avoidance.hpp"
+#include "sensor_msgs/LaserScan.h"
 
-class Navigation {
+class Avoidance {
  private:
   // Communication with the ROS system
   ros::NodeHandle nh;
 
-  // Inilalize variable to store if object is detected
-  ros::Publisher velocity;
+  // Subscribe to laser scan topic
+  ros::Subscriber sensorLaser;
 
-  // msg variable that handles robot speeds
-  geometry_msgs::Twist move;
+  // Defining minimun distance from the wall to avoid collision
+  float thresholdDist;
 
-  // Defining linear velocity in x direction
-  float xVelLin;
-
-  // Defining angular velocity in z direction
-  float zVelAng;
-
-  // Defining variables to store previous velocities
-  float prevVelLin, prevVelAng;
-
-  // Defining publishing rate
-  const int pubRate = 450;
-
+  // obstacle variable that defines presence of obstacles
+  bool obstacles;
+ 
  public:
   /**
    * @brief Base Constructor for the Navigation class.
    * @param None.
    * @return None.
    */
-  Navigation();
+  Avoidance();
   /**
    * @brief Base Constructor for the Navigation class.
    * @param Linear velocity
    * @param Angular velocity
    * @return None.
    */
-  Navigation(float velLin, float velAng);
+  explicit Avoidance(float thresholdDistance);
   /**
    * @brief   Make the Robot move ahead
    * @param   linear velocity in x direction
    * @return  linear velocity of the robot
    */
-  float moveAhead(float velLin);
+  void laserSensorCallback(const sensor_msgs::LaserScan::ConstPtr& sensorData);
   /**
-   * @brief   change the direction
-   * @param   angular velocity in z direction
-   * @return  angular velocity for the robot
-   */
-  float turnDirection(float velAng);
-  /**
-   * @brief   Controling the motion of the robot
-   * @param   none
-   * @return  none
-   */
-  void robotMovement(Avoidance& avoidanceObj);
-  /**
-   * @brief   reset velocity of the robot
-   * @param   none
-   * @return  returns true, otherwise false
-   */
-  bool resetRobotVelocity();
-  /**
-  * @brief  checks if there is any modification in velocity
+  * @brief  function to get balls detected
   * @param  none
-  * @return true if changed, otherwise false
+  * @return Status of the ball detection
   */
-  bool checkChangeInVelocity();
+  bool getAvoidedObstacle() const {
+    return obstacles;
+  }
+  /**
+  * @brief  function to set balls/walls detected
+  * @param  Status of the ball detectionls
+  * @return none
+  */
+  void setAvoidedObstacle(bool detectedObstacles) {
+    obstacles = detectedObstacles;
+  }
+  /**
+   * @brief   Checks the walls are present within threshold distance
+   * @param   none
+   * @return  True if found, otherwise false
+   */
+  bool checkWalls();
   /**
    * @brief Destructor for the Navigation class.
    * @param None.
    * @return None.
    */
-  ~Navigation();
+  ~Avoidance();
 };

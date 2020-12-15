@@ -10,7 +10,17 @@
         type="collection"
         name="collection"
         output="screen"
+        launch-prefix = "xterm -e"
     />
+
+    <node 
+        pkg = "collection_robot"
+        type = "scanner"
+        name = "scanner"
+        output = "screen"
+
+    />
+
     <!-- Launch rosbag node -->
     <node 
         pkg="rosbag"

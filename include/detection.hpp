@@ -59,8 +59,8 @@ class Detection {
   // identifying the colored objects limiting points
   cv::Rect colorObjlimits;
   // setting upper and lower limit of color
-  const cv::Scalar lowerLimit = {};
-  const cv::Scalar upperLimit = {};
+  const cv::Scalar lowerLimit = {170, 50, 50};
+  const cv::Scalar upperLimit = {255, 200, 90};
   // defining image size
   cv::Size imgSize;
   // image contours

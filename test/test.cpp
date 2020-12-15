@@ -38,6 +38,7 @@
 #include "opencv2/opencv.hpp"
 #include "navigation.hpp"
 #include "detection.hpp"
+#include "avoidance.hpp"
 
 /**
  * @brief This test checks if the filterImage function works as expected
@@ -84,7 +85,7 @@ TEST(Test1, detectObjsFunctionTest) {
 TEST(Test1, setObjLimitsFunctionTest) {
     Detection detectionObj;
     // definig the limit of the object
-    cv::Rect limits = {0, 2, 4, 6};
+    cv::Rect limits = {0, 20, 110, 55};
     detectionObj.setObjLimits(limits);
     EXPECT_EQ(detectionObj.getObjLimits(), limits);
 }
@@ -121,8 +122,8 @@ TEST(Test1, IsObjNotDetectedFunctionTest) {
 
 TEST(Test1, moveAheadFunctionTest) {
     // Defining linear and angular velocities for the robot
-    float linVelocity = 3.0;
-    float angVelocity = 0.75;
+    float linVelocity = 0.3;
+    float angVelocity = 0.45;
     Navigation navigationObj(linVelocity, angVelocity);
     EXPECT_EQ(linVelocity, navigationObj.moveAhead(linVelocity));
 }
@@ -135,7 +136,7 @@ TEST(Test1, moveAheadFunctionTest) {
 
 TEST(Test1, turnDirectionFunctionTest) {
     // Defining linear and angular velocities for the robot
-    float linVelocity = 3.0;
+    float linVelocity = 0.3;
     float angVelocity = 0.75;
     Navigation navigationObj(linVelocity, angVelocity);
     EXPECT_EQ(angVelocity, navigationObj.turnDirection(angVelocity));
@@ -166,12 +167,12 @@ TEST(Test1, checkChangeInVelocityFunctionTest) {
 /**
  * @brief This test checks if the avoidObstacle function works as expected
  * @param Test1 is the name of the group of tests
- * @param avoidObstacleFunctionTest is the specific name to check the avoidObstacle function
+ * @param avoidedObstacleFunctionTest is the specific name to check the avoidObstacle function
  */
 
-TEST(Test1, avoidObstacleFunctionTest) {
-    Navigation navigationObj;
-    EXPECT_FALSE(navigationObj.checkWalls());
+TEST(Test1, avoidedObstacleFunctionTest) {
+    Avoidance avoidanceObj;
+    EXPECT_FALSE(avoidanceObj.checkWalls());
 }
 
 /**
@@ -183,7 +184,18 @@ TEST(Test1, avoidObstacleFunctionTest) {
 TEST(Test1, checkWallsFunctionTest) {
     // Define Threshold distance from the walls
     float tDistance = 0.20;
-    Navigation navigationObj;
-    navigationObj.avoidObstacle(tDistance);
-    EXPECT_FALSE(navigationObj.checkWalls());
+    Avoidance avoidanceObj(tDistance);
+    EXPECT_FALSE(avoidanceObj.checkWalls());
+}
+
+/**
+ * @brief This test checks if the set/get functions of avoidedObstacle works as expected
+ * @param Test1 is the name of the group of tests
+ * @param notAvoidedObstacleFunctionTest is the specific name to check the checkWalls function
+ */
+
+TEST(Test1, notAvoidedObstacleFunctionTest) {
+    Avoidance avoidanceObj;
+    avoidanceObj.setAvoidedObstacle(true);
+    EXPECT_TRUE(avoidanceObj.getAvoidedObstacle());
 }
