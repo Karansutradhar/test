@@ -45,7 +45,7 @@ Avoidance::Avoidance(){
   /// Initialize minimun distance from the wall to avoid collision in meters
   thresholdDist = 0.75;
   /// Subscribing on scan topic from the laser sensor
-  sensorLaser = nh.subscribe<sensor_msgs::LaserScan>("/scanning", 450,
+  sensorLaser = nh.subscribe<sensor_msgs::LaserScan>("/scan", 1000,
               &Avoidance::laserSensorCallback, this);
   ROS_INFO_STREAM("The process is complete for avoidance");
 }
@@ -57,7 +57,7 @@ Avoidance::Avoidance(float thresholdDistance){
   /// Initialize minimun distance from the wall to avoid collision in meters
   thresholdDist = thresholdDistance;
   /// Subscribing on scan topic from the laser sensor
-  sensorLaser = nh.subscribe<sensor_msgs::LaserScan>("/scan", 450,
+  sensorLaser = nh.subscribe<sensor_msgs::LaserScan>("/scan", 1000,
               &Avoidance::laserSensorCallback, this);
   ROS_INFO_STREAM("The process is complete for avoidance");
 }
