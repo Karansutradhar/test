@@ -11,7 +11,7 @@ This project aims to solve a common problem in the sports industry, namely tidyi
 <add demo gif>
 
 ### Assumptions
-The number of balls in the environment is known and given by the user, but their locations are unknown. The ball collection task will be abstracted away by simply making the ball disappear from the environment when the robot is within a preset distance away from it. There is no time limit for the navigation and the simulation will only stop when all the balls are collected. The environment is assumed to be a small area of 20 x 20 feet.
+The number of balls in the environment is known and given by the user, but their locations are unknown. The ball collection task will be abstracted away by simply making the ball disappear from the environment when the robot is within a preset distance away from it. There is no time limit for the navigation and the simulation will only stop when all the balls are collected. The environment is assumed to be a small area of 20 x 20 feet
 
 ### Development Process
 Agile iterative process is followed in this project. The roles are divided into driver (DR), navigator (NA) and design keeper (DK), which are swapped throughout the tasks. We will iterate over the following 3 sprint backlogs (each spans a week) to complete the project.
